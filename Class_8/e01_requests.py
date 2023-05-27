@@ -180,28 +180,28 @@ import datetime
 # response = requests.get("https://apis.datos.gob.ar/series/api/series/?ids=168.1_T_CAMBIOR_D_0_0_26&limit=5000&format=json")
 # data = json.loads(response.text)  # convierto el json a un diccionario
 #
-# panda = pd.DataFrame(data["data"])  # convierto el diccionario a un dataframe
-# panda.rename(columns={0: "fecha", 1: "usd"}, inplace=True)  # renombro las columnas, OJO con el inplace
-# panda.set_index("fecha", inplace=True)  # seteo el indice. Ver previo cual era el indice antes
+# df_oficial = pd.DataFrame(data["data"])  # convierto el diccionario a un dataframe
+# df_oficial.rename(columns={0: "fecha", 1: "usd"}, inplace=True)  # renombro las columnas, OJO con el inplace
+# df_oficial.set_index("fecha", inplace=True)  # seteo el indice. Ver previo cual era el indice antes
 #
-# panda.plot()
-# print(panda)
+# df_oficial.plot()
+# print(df_oficial)
 # plt.show()
 
 
 """ ----------------------------------------------------------------------------------------------- """
-# // Vamos a ver la cotizacion ccl del dolar historicamente desde https://www.ambito.com/
-desde = "2023-01-01"
-hasta = datetime.date.today().strftime("%Y-%m-%d")
-data2 = requests.get(f"https://mercados.ambito.com//dolarrava/cl/historico-general/{desde}/{hasta}").text
-data = json.loads(data2)
-
-data = pd.DataFrame(data[1:], columns=data[0])  # tomo la primera fila como header
-data.set_index("Fecha", inplace=True)
-
-data["dolar"] = data["Referencia"].apply(lambda x: float(x.replace(",", ".")))  # reemplazo las comas por puntos y convierto a float
-data.index = pd.to_datetime(data.index, format="%d/%m/%Y")  # convierto el indice a datetime
-
-print(data)
-data["dolar"].plot()  # grafico solo el dolar
-plt.show()
+# # // Vamos a ver la cotizacion ccl del dolar historicamente desde https://www.ambito.com/
+# desde = "2023-01-01"
+# hasta = datetime.date.today().strftime("%Y-%m-%d")
+# data2 = requests.get(f"https://mercados.ambito.com//dolarrava/cl/historico-general/{desde}/{hasta}").text
+# data = json.loads(data2)
+#
+# df_ccl = pd.DataFrame(data[1:], columns=data[0])  # tomo la primera fila como header
+# df_ccl.set_index("Fecha", inplace=True)
+#
+# df_ccl["dolar"] = df_ccl["Referencia"].apply(lambda x: float(x.replace(",", ".")))  # reemplazo las comas por puntos y convierto a float
+# df_ccl.index = pd.to_datetime(df_ccl.index, format="%d/%m/%Y")  # convierto el indice a datetime
+#
+# print(df_ccl)
+# df_ccl["dolar"].plot()  # grafico solo el dolar
+# plt.show()
