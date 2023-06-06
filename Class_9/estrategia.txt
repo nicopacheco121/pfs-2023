@@ -1,0 +1,23 @@
+* Estrategia a backtestear *
+
+Está siempre posicionado, o long o short. Si estamos long, no nos ponemos short hasta que exista condicion para shortear.
+Igual para el long. No hay cierre sin apertura de otra posicion.
+
+Mercado: Crypto
+
+Indicadores:
+- EMA lenta
+- EMA rapida
+- RSI
+
+
+Estrategia:
+LONG:
+- EMA rapida > EMA lenta
+- RSI < 50
+
+
+SHORT:
+- EMA rapida < EMA lenta
+- RSI > 50
+
