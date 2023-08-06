@@ -4,6 +4,8 @@ import random
 for x in range(1000):
     print(x)
 
+print('x')
+
 my_number = random.randint(0,1000)
 my_number2 = random.randint(-1000,1000)
 
