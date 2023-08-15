@@ -23,20 +23,36 @@ Debug
 - Evaluate expression
 - Breakpoing condicional
 
+GIT
+- commit
+- rollback
+- add
+- push
+
+Comentarios
+Refactor
+Find usages
+Boton derecho variable
+Control shift para mover bloque de codigo
+Selecciono cadena de caracters y poner comillas
+
+
+Ejercicios
+
 
 """
 
 
 #error highlighting
-variable4 = "abc"
-operand2 = '2'
+variabl = "abc"
+operand2 = 2
 #Refactor
-print(variable4 + operand2)
+print(variabl + operand2)
 
 #operation not supported
-print(variable4 - operand2)
-print(variable4 * operand2)
-print(variable4 / operand2)
+print(variabl - operand2)
+print(variabl * operand2)
+print(variabl / operand2)
 10+30
 
 def funcion():
@@ -62,3 +78,5 @@ list()
 
 #string conversion selecting and pressing "
 string
+
+variabl
