@@ -122,6 +122,11 @@ print("Valor",myVariable)
 print("Type",type(myVariable))
 print("Boolean",bool(myVariable))
 
+
+# Una variable se puede utilizar como valor de otra variable
+variable1 = 1
+variable2 = variable1
+
 #Assignment expression
 # print(x := 5)  # con el := puedo crear la variable y a su utilizarlo como input a una funcion
 # print(x)
