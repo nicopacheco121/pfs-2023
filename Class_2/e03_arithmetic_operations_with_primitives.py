@@ -14,12 +14,12 @@ operand1 = "string1"
 operand2 = "string2"
 
 
-# print(operand1+operand2)
-# print(operand1-operand2)
-# print(operand1*operand2)
-# print(operand1/operand2)
-# print(operand1%operand2)
-# print(operand1**operand2)
+print(operand1+operand2)
+print(operand1-operand2)
+print(operand1*operand2)
+print(operand1/operand2)
+print(operand1%operand2)
+print(operand1**operand2)
 
 # Operaciones aritmeticas que puedo hacer entre enteros
 operand1 = 11
