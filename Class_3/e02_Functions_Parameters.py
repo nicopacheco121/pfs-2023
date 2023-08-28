@@ -1,34 +1,45 @@
+"""
+- Importar funciones de otro archivo, sintaxis
+"""
+
+# Importamos funciones
 from Class_3.e01_Functions_Definition import *
+# from Class_3.e01_Functions_Definition import printLine
+# from Class_3.e01_Functions_Definition import printLine as pl
 
 char = "-"
 
-#I can call a function that uses another function
-printShortLine(char)
-printLongLine(char)
-printLine()
+printLine()  # ejecuto la funcion printLine sin pasarle parametros
 printLine(numberOfTimes=50)
-printLine(character="~",numberOfTimes=100)
+printLine(character="~", numberOfTimes=100)
 
-#required positional parameter error
-#printShortLine()
 
-'''Arbitrary Arguments, *args
-If you do not know how many arguments that will be passed into your function, add a * before the parameter name in the function definition.
+# Puedo llamar a una funcion que utiliza otra funcion
+printShortLine(char)  # Si quiero una linea corta uso esta funcion
+printLongLine(char)  # Si quiero una linea larga uso esta funcion
 
-This way the function will receive a tuple of arguments, and can access the items accordingly:
 
-Arbitrary Arguments are often shortened to *args in Python documentations.
+'''
+Parametros arbitrarios, *args
+Si no sabes cuantos argumentos se pasarán a tu función, agrega un * antes del nombre del parámetro en la definición de la función.
+De esta manera, la función recibirá una tupla de argumentos y podrá acceder a los elementos en consecuencia:
+Los Argumentos Arbitrarios a menudo se acortan a *args en la documentación de Python.
 
-Example
-If the number of arguments is unknown, add a * before the parameter name:'''
-print("matias",1,"Julian",50)
+- Declaramos una funcion con un parametro arbitrario
+- *args es una tupla, es decir, un conjunto de valores
+- Vemos los valores que tiene la tupla con el debug
+'''
+print("matias", 1, "Julian", 50)  # que sucede si le paso varios parametros a la funcion print?
 
-def my_print(*parameters):
-    for value in parameters:
+
+def my_print(*parameters):  # *parameters es una tupla, es decir, un conjunto de valores
+    for value in parameters:  # recorro la tupla, el for lo veremos mas adelante
         print(str(value)+" ")
 
 my_print("matias",1,50)
 
+
+# otro ejemplo
 def my_function(*kids):
     for kid in kids:
         print("The youngest child is " + kid)
@@ -36,15 +47,18 @@ def my_function(*kids):
 my_function("Emil", "Tobias", "Linus","Matias")
 
 
-'''Arbitrary Keyword Arguments, **kwargs
-If you do not know how many keyword arguments that will be passed into your function, add two asterisk: ** before the parameter name in the function definition.
+'''
+Parametros arbitrarios, **kwargs
+Si no sabes cuántos argumentos de palabra clave se pasarán a tu función, agrega dos asteriscos: ** antes del nombre del parámetro en la definición de la función.
+De esta manera, la función recibirá un diccionario de argumentos y podrá acceder a los elementos en consecuencia.
+Es decir, **kwargs es un diccionario, es decir, un conjunto de valores con clave y valor
+'''
 
-This way the function will receive a dictionary of arguments, and can access the items accordingly:
-
-Example
-If the number of keyword arguments is unknown, add a double ** before the parameter name:'''
 
 def my_function(**kid):
     print("His last name is " + kid["lname"])
 
-my_function(fname = "Tobias", lname = "Refsnes",matias="OK")
+
+my_function(fname="Tobias", lname="Refsnes", matias="OK")
+
+# LA DIFERENCIA ENTRE * Y ** ES QUE * ES UNA TUPLA Y ** ES UN DICCIONARIO
