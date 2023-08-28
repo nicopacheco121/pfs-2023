@@ -34,7 +34,7 @@ if status in ["NEW", "PARTIALLY_FILLED", "CANCELLED", "REJECTED", "EXPIRED", "FI
 
 
 # Puedo evaluar conjunto de condiciones
-# Evaluamos si toddas son verdaderas con "all"
+# Evaluamos si todas son verdaderas con "all"
 a = 10
 condiciones = [a < 10, a == 10, a != 20]  # conjunto de condiciones, lista con valores booleanos
 if all(condiciones):  # evalua si todos los elementos son verdaderos
