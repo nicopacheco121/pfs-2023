@@ -37,7 +37,7 @@ print(not a)
 print(not b)
 print(not (a and b))
 
-# Puedo utilizar el algebra de book a la hora de asignar el valor a una variable
+# Puedo utilizar el algebra de bool a la hora de asignar el valor a una variable
 z = a and b
 print(z)
 
