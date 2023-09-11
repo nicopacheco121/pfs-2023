@@ -1,30 +1,42 @@
 '''Set
-A set is a collection which is unordered and unindexed. In Python sets are written with curly brackets.
+Es una coleccion desordenada y no indexada.
+No permite duplicados.
+Se escriben con llaves {}
 
-Example
-Create a Set:'''
+Lo que vimos en listas para acceder a los elementos NO se puede utilizar en sets.
+'''
 
-thisset = {"apple", "banana", "cherry","banana","banana"}
+### SINTAXIS
+# Creamos un set
+thisset = {"apple", "banana", "cherry", "banana", "banana"}
 print(thisset)
 
 conjunto = "voy a transformar una cadena de caracteres en un conjunto sin repetidos"
-print(set(conjunto))
+print(set(conjunto))  # toma cada caracter como un elemento del conjunto
 
+print(list(conjunto))
 
-'''Note: Sets are unordered, so you cannot be sure in which order the items will appear.
+#############################################
+# ACCEDEMOS A LOS ELEMENTOS
+#############################################
+'''
+Nota: Los conjuntos son desordenados, por lo que no se puede saber en que orden aparecerán los elementos.
 
-Access Items
-You cannot access items in a set by referring to an index, since sets are unordered the items has no index.
+Acceder a los elementos de un conjunto
+No se puede acceder a los elementos de un conjunto haciendo referencia a un índice, ya que los conjuntos están desordenados los elementos no tienen índice.
 
-But you can loop through the set items using a for loop, or ask if a specified value is present in a set, by using the in keyword.
-
-Example
-Loop through the set, and print the values:'''
+Pero se puede recorrer con un bucle for, o preguntar si un valor especifico está presente en un conjunto, usando la palabra reservada in.
+'''
 
 thisset = {"apple", "banana", "cherry"}
 
-for x in sorted(thisset):
+print(thisset)
+for x in sorted(thisset):  # sorted() ordena los elementos del conjunto
     print(x)
+
+nueva = list(thisset)  # crea una lista con los elementos del conjunto
+nueva.sort()  # ordena la lista
+print(nueva)  # como me queda la lista?
 
 '''Example
 Check if "banana" is present in the set:'''
@@ -34,27 +46,25 @@ thisset = {"apple", "banana", "cherry"}
 print("banana" in thisset)
 
 
+#############################################
+# AGREGAMOS LOS ELEMENTOS
+#############################################
 '''Add Items
-To add one item to a set use the add() method.
+Para agregar un elemento a un conjunto, use el método add().
+Para agregar más de un elemento a un conjunto, use el método update().
+'''
 
-To add more than one item to a set use the update() method.
-
-Example
-Add an item to a set, using the add() method:'''
-
+# Add
 thisset = {"apple", "banana", "cherry"}
 
 thisset.add("orange")
 
 print(thisset)
 
-
-'''Example
-Add multiple items to a set, using the update() method:'''
-
+# Update
 thisset = {"apple", "banana", "cherry"}
 
-thisset.update(["orange", "mango", "apple","cherry"])
+thisset.update(["orange", "mango", "apple", "cherry"])
 
 print(thisset)
 
@@ -68,29 +78,24 @@ thisset = {"apple", "banana", "cherry"}
 
 print(len(thisset))
 
-
+#############################################
+# ELIMINO ELEMENTOS
+#############################################
 '''Remove Item
-To remove an item in a set, use the remove(), or the discard() method.
-
-Example
-Remove "banana" by using the remove() method:
-Note: If the item to remove does not exist, remove() will raise an error.
+Para eliminar un elemento en un conjunto, estan los métodos remove(), o discard().
 '''
 
+# Remove
+# Si el valor no existe, remove() generará un error
 thisset = {"apple", "banana", "cherry"}
 
-thisset.remove("matias")
+thisset.remove("apple")
 
 print(thisset)
 
 
-'''
-
-Example
-Remove "banana" by using the discard() method:
-Note: If the item to remove does not exist, discard() will NOT raise an error.
-'''
-
+# Discard
+# Si el valor no existe, discard() NO generará un error
 thisset = {"apple", "banana", "cherry"}
 
 thisset.discard("matias")
@@ -99,29 +104,22 @@ print(thisset)
 
 
 '''
-
-You can also use the pop(), method to remove an item, but this method will remove the last item. 
-Remember that sets are unordered, so you will not know what item that gets removed.
-
-The return value of the pop() method is the removed item.
-
-Example
-Remove the last item by using the pop() method:'''
+Pop
+Tambien se puede eliminar un elemento con el método pop(), este método eliminará el último elemento. 
+Recuerde que los conjuntos están desordenados, por lo que no sabrá qué elemento se eliminará.
+El valor de retorno de pop() es el elemento eliminado.
+'''
 
 thisset = {"apple", "banana", "cherry"}
 
 x = thisset.pop()
 
 print(x)
-
 print(thisset)
 
 
-'''Note: Sets are unordered, so when using the pop() method, you will not know which item that gets removed.
-
-Example
-The clear() method empties the set:'''
-
+'''Clear
+El método clear() vacía el conjunto:'''
 thisset = {"apple", "banana", "cherry"}
 
 thisset.clear()
@@ -138,30 +136,32 @@ del thisset
 print(thisset)
 
 
+#############################################
+# OPERADORES DE CONJUNTOS
+#############################################
+
 '''Join Two Sets
-There are several ways to join two or more sets in Python.
+Existen varios métodos para unir dos o más conjuntos en Python.
+Podemos usar el método union() que devuelve un nuevo conjunto que contiene todos los elementos de ambos conjuntos, 
+o el método update() que inserta todos los elementos de un conjunto en otro:
+'''
 
-You can use the union() method that returns a new set containing all items from both sets, or the update() method that inserts all the items from one set into another:
+# Union
+set1 = {"a", "b", "c"}
+set2 = {"a", 2, 3, "b", "c"}
 
-Example
-The union() method returns a new set with all items from both sets:'''
-
-set1 = {"a", "b" , "c"}
-set2 = {"a", 2, 3}
-
-set3 = set1.union(set2)
+set3 = set1.union(set2)  # une los elementos de set1 y set2 en un NUEVO conjunto
 print(set3)
 print(set1)
 
-'''Example
-The update() method inserts the items in set2 into set1:'''
-
+# Update
 set1 = {"a", "b" , "c"}
 set2 = {1, 2, 3}
 
-set1.update(set2)
+set1.update(set2)  # une los elementos de set2 en set1, MODIFICANDO set1
 print(set1)
 print(set2)
+
 
 '''Note: Both union() and update() will exclude any duplicate items.
 
@@ -175,7 +175,6 @@ Using the set() constructor to make a set:'''
 
 thisset = set(("apple", "banana", "cherry")) # note the double round-brackets
 print(thisset)
-
 
 '''Set Methods
 Python has a set of built-in methods that you can use on sets.
