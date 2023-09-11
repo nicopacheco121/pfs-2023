@@ -1,9 +1,13 @@
 '''Tuple
-A tuple is a collection which is ordered and unchangeable. In Python tuples are written with round brackets.
+Es una colección ordenada e inmutable.
+Se escriben entre parentesis.
 
-Example
-Create a Tuple:'''
+Lo que vimos en listas para acceder a los elementos, también se puede hacer en tuplas.
+La tupla NO es modificable, entonces no se puede agregar, modificar ni eliminar elementos.
+'''
 
+### SINTAXIS
+# Creamos una tupla
 thistuple = ("apple", "banana", "cherry")
 print(thistuple)
 
@@ -53,23 +57,24 @@ This example returns the items from index -4 (included) to index -1 (excluded)''
 thistuple = ("apple", "banana", "cherry", "orange", "kiwi", "melon", "mango")
 print(thistuple[-4:-1])
 
+#############################################
+# *** IMPORTANTE ***
+#############################################
 
-'''Change Tuple Values
-Once a tuple is created, you cannot change its values. Tuples are unchangeable, or immutable as it also is called.
+'''
+Cambiar el valor de una tupla
+Una vez que se crea una tupla, no se pueden cambiar sus valores. Las tuplas son inmutables.
+Pero hay una solución. Puede convertir la tupla en una lista, cambiar la lista y volver a convertir la lista en una tupla.
+'''
 
-But there is a workaround. You can convert the tuple into a list, change the list, and convert the list back into a tuple.
+x = ("apple", "banana", "cherry")  # creo una tupla y la asigno a la variable x
+z = x  # asigno la tupla a la variable z
+y = list(x)  # genero una lista a partir de la tupla y la asigno a la variable y
+y[1] = "kiwi"  # modifico el valor de la lista
+x = tuple(y)  # convierto la lista en tupla y la asigno a la variable x
 
-Example
-Convert the tuple into a list to be able to change it:'''
-
-x = ("apple", "banana", "cherry")
-z = x
-y = list(x)
-y[1] = "kiwi"
-x = tuple(y)
-
-print(x)
-print(z)
+print(x)  # que pasa si imprimo x?
+print(z)  # que pasa si imprimo z?
 
 
 '''Loop Through a Tuple
@@ -104,6 +109,9 @@ thistuple = ("apple", "banana", "cherry")
 print(len(thistuple))
 
 
+#############################################
+# *** IMPORTANTE ***
+#############################################
 '''Add Items
 Once a tuple is created, you cannot add items to it. Tuples are unchangeable.
 
@@ -111,15 +119,17 @@ Example
 You cannot add items to a tuple:'''
 
 thistuple = ("apple", "banana", "cherry")
-thistuple[3] = "orange" # This will raise an error
+thistuple[2] = "orange" # This will raise an error
 print(thistuple)
 
 
-'''Create Tuple With One Item
-To create a tuple with only one item, you have add a comma after the item, unless Python will not recognize the variable as a tuple.
-
-Example
-One item tuple, remember the commma:'''
+#############################################
+# *** IMPORTANTE ***
+#############################################
+'''
+Crear una tupla con UN elemento
+Para crear una tupla con solo un elemento, debe agregar una coma después del elemento
+'''
 
 thistuple = ("apple",)
 print(type(thistuple))
@@ -163,7 +173,9 @@ Using the tuple() method to make a tuple:'''
 thistuple = tuple(("apple", "banana", "cherry")) # note the double round-brackets
 print(thistuple)
 
-
+#############################################
+# *** IMPORTANTE ***
+#############################################
 '''Tuple Methods
 Python has two built-in methods that you can use on tuples.
 
