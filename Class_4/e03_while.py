@@ -5,7 +5,7 @@ No se sabe cuantas veces se va a ejecutar el codigo
 Se ejecuta mientras la condicion sea verdadera
 La condicion se evalua al principio de cada iteracion
 Si la condicion es False, no se ejecuta el codigo dentro del while y continua la ejecucion del programa
-
+Si no modifico la condicion (para que deje de ser verdadera), el while se ejecuta infinitamente
 
 """
 
@@ -18,6 +18,7 @@ while entero <= 10:  # condicion
     if entero % 4 == 0:
         entero -= 5
     entero += 5
+
 # debugeamos
 
 print('- - - - - - - - - -')
@@ -28,31 +29,31 @@ el usuario tiene 5 intentos para adivinar un numero entre 0 y 10
 si el usuario adivina el numero, gana
 si el usuario no adivina el numero, vuelve a intentar hasta que se le acaben los intentos
 """
-
-import random  # este modulo nos permite generar numeros aleatorios
-
-numero = random.randint(0,
-                        10)  # generamos un numero aleatorio entre 0 y 10. Este numero es el que el usuario tiene que adivinar
-
-intento = 0  # contador de intentos
-
-# En el while tenemos 2 condiciones.
-# La primema es que el usuario tenga intentos disponibles
-# La segunda, comparamos el numero ingresado por el usuario con el numero que tiene que adivinar
-
-while intento < 5 and (prueba := int(input("ingrese numero"))) != numero:
-    intento += 1
-    if prueba > numero:  # Le doy una ayuda al usuario
-        print("El numero ingresado es mayor al buscado")
-    else:
-        print("El numero ingresado es menor al buscado")
-
-if numero == prueba:
-    print("Ganaste el numero es:", numero, "usaste ", intento, "intentos")
-else:
-    print("Perdiste")
-
-print('- - - - - - - - - -')
+#
+# import random  # este modulo nos permite generar numeros aleatorios
+#
+# numero = random.randint(0,
+#                         10)  # generamos un numero aleatorio entre 0 y 10. Este numero es el que el usuario tiene que adivinar
+#
+# intento = 0  # contador de intentos
+#
+# # En el while tenemos 2 condiciones.
+# # La primema es que el usuario tenga intentos disponibles
+# # La segunda, comparamos el numero ingresado por el usuario con el numero que tiene que adivinar
+#
+# while intento < 5 and (prueba := int(input("ingrese numero"))) != numero:
+#     intento += 1
+#     if prueba > numero:  # Le doy una ayuda al usuario
+#         print("El numero ingresado es mayor al buscado")
+#     else:
+#         print("El numero ingresado es menor al buscado")
+#
+# if numero == prueba:
+#     print("Ganaste el numero es:", numero, "usaste ", intento, "intentos")
+# else:
+#     print("Perdiste")
+#
+# print('- - - - - - - - - -')
 
 '''Serie fibonacci'''
 
