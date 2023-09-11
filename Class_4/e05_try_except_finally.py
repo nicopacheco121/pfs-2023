@@ -1,5 +1,5 @@
 """
-Controlar el flujo cuand tengo errores
+Controlar el flujo cuando tengo errores
 
 
 """
