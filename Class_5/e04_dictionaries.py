@@ -1,89 +1,106 @@
 '''Dictionary
-A dictionary is a collection which is unordered, changeable and indexed.
-In Python dictionaries are written with curly brackets, and they have keys and values.
+Es una coleccion desordenada y mutable
+Es indexada, pero no se indexa por numeros, sino por claves
 
-Example
-Create and print a dictionary:'''
+Se escriben con llaves {} y tienen claves y valores
+'''
 
+### SINTAXIS
+# Creamos un diccionario
 thisdict = {
-    "brand": "Ford",
+    "brand": "Ford",  # clave: valor
     "model": "Mustang",
-    "year": 1964
+    "year": 1964,
 }
 print(thisdict)
 
 
-'''Accessing Items
-You can access the items of a dictionary by referring to its key name, inside square brackets:
-
-Example
-Get the value of the "model" key:'''
+#############################################
+# ACCEDEMOS A LOS ELEMENTOS
+#############################################
+'''
+Accedemos a los elementos referenciando a la clave
+Si la clave no existe, da error
+'''
 
 x = thisdict["model"]
 print(x)
 
 
-'''There is also a method called get() that will give you the same result:
-
-Example
-Get the value of the "model" key:'''
-
+'''
+Hay un metodo llamado get() que hace lo mismo.
+Pero si la clave no existe, no da error, sino que devuelve None
+'''
 x = thisdict.get("model")
+# x = thisdict.get("motor")
 print(x)
 
-'''Change Values
-You can change the value of a specific item by referring to its key name:
 
-Example
-Change the "year" to 2018:'''
+#############################################
+# MODIFICAR ELEMENTOS
+#############################################
+
+
+'''Change Values
+Podemos cambiar el valor de un elemento referenciando a su clave
+'''
 
 thisdict = {
     "brand": "Ford",
     "model": "Mustang",
-    "year": 1964
+    "year": 1964,
+    'km': 100000
 }
-thisdict["year"] = 2018
+
+thisdict["km"] = 10  # modifico el valor de la clave km
 
 print(thisdict)
 
+
+#############################################
+# RECORRER UN DICCIONARIO
+#############################################
+
 '''Loop Through a Dictionary
-You can loop through a dictionary by using a for loop.
+Podemos recorrer un diccionario con un bucle for
 
-When looping through a dictionary, the return value are the keys of the dictionary, but there are methods to return the values as well.
+El bucle for recorre las claves del diccionario
+'''
 
-Example
-Print all key names in the dictionary, one by one:'''
-
-for x in thisdict:
+for x in thisdict:  # recorro las claves del diccionario
     print(x)
 
-
-'''Example
-Print all values in the dictionary, one by one:'''
-
+# Recorro las claves y accedo a los valores
 for x in thisdict:
     print(thisdict[x])
 
 
-'''Example
-You can also use the values() function to return values of a dictionary:'''
+'''
+Vemos 3 metodos para recorrer el diccionario
+'''
 
-for x in thisdict.values():
+# values, para acceder a los valores
+for x in thisdict.values():  # .values devuelve una lista con los valores
+    print(x)
+
+# keys, para acceder a las claves
+for x in thisdict.keys():  # .keys devuelve una lista con las claves
+    print(x)
+
+# items, para acceder a los pares clave-valor
+for x in thisdict.items():  # .items devuelve una lista con los pares clave-valor
     print(x)
 
 
-'''Example
-Loop through both keys and values, by using the items() function:'''
+print(thisdict)
+print(thisdict.keys())
+print(thisdict.values())
+print(thisdict.items())
 
-for x, y in thisdict.items():
-    print(x, y)
 
-
-'''Check if Key Exists
-To determine if a specified key is present in a dictionary use the in keyword:
-
-Example
-Check if "model" is present in the dictionary:'''
+'''
+Check si una clave o un valor existe
+'''
 
 thisdict = {
     "brand": "Ford",
@@ -91,66 +108,81 @@ thisdict = {
     "year": 1964
 }
 
-
+# chequeamos si existe una key
 if "model" in thisdict:
     print("Yes, 'model' is one of the keys in the thisdict dictionary")
 
+# otra forma de hacer lo mismo
+if "model" in thisdict.keys():
+    print("Yes, 'model' is one of the keys in the thisdict dictionary")
 
-'''Dictionary Length
-To determine how many items (key-value pairs) a dictionary has, use the len() method.
+# chequeamos si un valor existe
+if 'Mustang' in thisdict.values():
+    print("Yes, 'Mustang' is one of the values in the thisdict dictionary")
 
-Example
-Print the number of items in the dictionary:'''
+'''
+Cantidad de elementos
+'''
 
 print(len(thisdict))
 
-
-'''Adding Items
-Adding an item to the dictionary is done by using a new index key and assigning a value to it:
-
-Example'''
+#############################################
+# MANIPULAR ELEMENTOS
+#############################################
+'''
+Agregar elementos
+Se agrega un elemento referenciando a una NUEVA clave
+'''
 thisdict = {
     "brand": "Ford",
     "model": "Mustang",
     "year": 1964,
 }
+
 if "color" not in thisdict:
     thisdict["color"] = "red"
 
 print(thisdict)
 
+# Si a una clave existente le asigno un valor, lo MODIFICO
+thisdict['color'] = 'blue'
+print(thisdict)
 
-'''Removing Items
-There are several methods to remove items from a dictionary:
+# *** Si la clave no existe, la crea, y si existe, la modifica
 
-Example
-The pop() method removes the item with the specified key name:'''
 
+'''Remover elementos
+Hay distintas formas
+pop
+popitem
+del
+'''
+
+# Pop remueve el elemento con la clave indicada
 thisdict = {
     "brand": "Ford",
     "model": "Mustang",
     "year": 1964
 }
-valor = thisdict.pop("model")
+valor = thisdict.pop("model")  # remueve el elemento con la clave indicada y devuelve el valor
 print(thisdict)
 print(valor)
 
 
-'''Example
-The popitem() method removes the last inserted item (in versions before 3.7, a random item is removed instead):'''
-
+# Popitem remueve el ultimo elemento
 thisdict = {
     "brand": "Ford",
     "model": "Mustang",
     "year": 1964
 }
-valor = thisdict.popitem()
+
+
+valor = thisdict.popitem()  # remueve el ultimo elemento y devuelve una tupla con la clave y el valor
 print(thisdict)
 print(valor)
 
-'''Example
-The del keyword removes the item with the specified key name:'''
 
+# Del remueve el elemento con la clave indicada
 thisdict = {
     "brand": "Ford",
     "model": "Mustang",
@@ -168,8 +200,11 @@ thisdict = {
     "model": "Mustang",
     "year": 1964
 }
+
+
 del thisdict
-print(thisdict) #this will cause an error because "thisdict" no longer exists.
+# print(thisdict)
+#this will cause an error because "thisdict" no longer exists.
 
 
 '''Example
@@ -182,6 +217,11 @@ thisdict = {
 }
 thisdict.clear()
 print(thisdict)
+
+
+#############################################
+# *** IMPORTANTE ***
+#############################################
 
 '''Copy a Dictionary
 You cannot copy a dictionary simply by typing dict2 = dict1, 
@@ -197,8 +237,8 @@ thisdict = {
     "model": "Mustang",
     "year": 1964
 }
-mydict = thisdict.copy()
-mydict["matias"]="nuevaclave"
+mydict = thisdict  # mydict es una referencia a thisdict
+mydict["matias"] = "nuevaclave"  # modifico mydict
 print(mydict)
 print(thisdict)
 
@@ -212,16 +252,18 @@ thisdict = {
     "model": "Mustang",
     "year": 1964
 }
-mydict = dict(thisdict)
+mydict = dict(thisdict)  # mydict es una COPIA de thisdict
+print(mydict)
+
+mydict = mydict.copy()  # mydict es una COPIA de mydict
 print(mydict)
 
 
-'''Nested Dictionaries
-A dictionary can also contain many dictionaries, this is called nested dictionaries.
+'''
+Un diccionario puede contener diccionarios, esto se llama diccionarios anidados.
+'''
 
-Example
-Create a dictionary that contain three dictionaries:'''
-
+# en este diccionario tengo 3 claves, donde el value de cada clave es un diccionario
 myfamily = {
     "child1" : {
         "name" : "Emil",
@@ -236,12 +278,13 @@ myfamily = {
         "year" : 2011
     }
 }
+print(myfamily)
 
-'''Or, if you want to nest three dictionaries that already exists as dictionaries:
+'''
+Tambien puedo aniadir diccionarios a un diccionario existente
+'''
 
-Example
-Create three dictionaries, than create one dictionary that will contain the other three dictionaries:'''
-
+# Creo 3 diccionarios
 child1 = {
     "name" : "Emil",
     "year" : 2004
@@ -255,25 +298,39 @@ child3 = {
     "year" : 2011
 }
 
+# Creo un diccionario y a cada clave le asigno un diccionario previamente creado
 myfamily = {
-    ("child1","Linus") : child1,
+    "child1": child1,
     "child2" : child2,
     "child3" : child3
 }
 
+
+### Para acceder a los valores de un diccionario anidado, referencio a la clave del diccionario anidado
+
 print(myfamily)
-print(myfamily[("child1","Linus")]["year"])
-myfamily["child3"]["year"] = 2020
+
+# Accedo a los valores del diccionario anidado
+# Utilizo el subindice.
+# Con myfamily["child1"] accedo al diccionario child1 y con ["year"] accedo al valor de la clave year
+print(myfamily["child1"]["year"])
+
+# Modifico el valor de la clave year del diccionario child3
+myfamily["child3"]["year"] = 2020  # modifico el valor de la clave year del diccionario child3
 print(myfamily["child3"]["year"])
-print(child3["year"])
-child3["year"] = 2040
-print(myfamily["child3"]["year"])
+print(child3["year"])  # que pasa si imprimo esto? por que me da este valor?
+
+
+child3["year"] = 2040  # modifico el valor como hice antes
+print(myfamily["child3"]["year"])  # que pasa si imprimo esto? por que me da este valor?
+
+
 
 '''The dict() Constructor
 It is also possible to use the dict() constructor to make a new dictionary:
 
 Example'''
-thisdict = dict(brand="Ford", model="Mustang", year=1964)
+thisdict = dict(brand="Ford", model="Mustang", year=1964)  # la clave va sin comillas
 # note that keywords are not string literals
 # note the use of equals rather than colon for the assignment
 print(thisdict)
@@ -296,9 +353,3 @@ setdefault()	Returns the value of the specified key. If the key does not exist: 
 update()	Updates the dictionary with the specified key-value pairs
 values()	Returns a list of all the values in the dictionary
 '''
-
-midiccionario = {}
-
-midiccionario.setdefault("nombre","matias")
-midiccionario.setdefault("nombre","juan")
-print(midiccionario)
