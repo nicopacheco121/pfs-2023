@@ -1,114 +1,141 @@
 '''List
-A list is a collection which is ordered and changeable. In Python lists are written with square brackets.
 
-Example
-Create a List:'''
+Una lista es una coleccion que esta ordenada y es modificable.
+En Python las listas se escriben con corchetes y los elementos se separan con comas.
+'''
 
-thislist = ["apple", "banana", "cherry"]
+### SINTAXIS
+# Creamos una lista
+thislist = ["apple", "banana", "cherry"]  # utilizamos corchetes y separamos los elementos con comas
 print(thislist)
 
+# hoy estaremos utilizando el shortcut alt + shift + e para ejecutar el codigo seleccionado
+
+#############################################
+# ACCEDEMOS A LOS ELEMENTOS
+#############################################
+
 '''
-Access Items
-You access the list items by referring to the index number:
+Acceder a los elementos de una lista
+Se puede accerdea los elementos de una lista utilizando el nombre de la lista y el indice del elemento que queremos acceder.
+'''
 
-Example
-Print the second item of the list:'''
-
+# Accedemos e imprimimos el segundo elemento de la lista
+# En python los indices comienzan en 0 (zero based indexing)
 thislist = ["apple", "banana", "cherry"]
 print(thislist[1])
 
-'''Negative Indexing
-Negative indexing means beginning from the end, -1 refers to the last item, -2 refers to the second last item etc.
+'''
+Indexado negativo
+Python tambien permite el indexado negativo, esto significa que comienza a contar desde el final de la lista.
+-1 es el ultimo elemento de la lista
+-2 es el penultimo elemento de la lista
+'''
 
-Example
-Print the last item of the list:'''
-
+# Imprimimos el ultimo elemento de la lista
+# Como los indices comienzan en 0, el ultimo elemento de la lista es el n-1. No me interesa saber el tamaño de la lista.
 thislist = ["apple", "banana", "cherry"]
 print(thislist[-1])
 
 
-'''Range of Indexes
-You can specify a range of indexes by specifying where to start and where to end the range.
+'''
+Quiero acceder a un rango de elementos de una lista
+Para acceder a un rango de una lista, debo especificar donde comienza el rango y donde termina el rango.
+Para acceder a un rango de elementos de una lista, se utiliza el operador de rango " : "
 
-When specifying a range, the return value will be a new list with the specified items.
+El retorno sera una NUEVA lista con los elementos especificados.
+Esto se llama slice operator
+'''
 
-This is called the slice operator
-
-Example
-Return the third, fourth, and fifth item:'''
-
+# Hago un slice y obtengo una nueva lista con los elementos desde el indice 2 hasta el indice 5
+# El rango comenzara en el indice 2 (incluido) y terminara en el indice 5 (no incluido).
+# Como vimos con range en la clase pasada
 thislist = ["apple", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
 print(thislist[2:5])
 print(thislist)
 print(thislist[-4:-1])
 
-'''Note: The search will start at index 2 (included) and end at index 5 (not included).
-
-Remember that the first item has index 0.
-
-By leaving out the start value, the range will start at the first item:
-
-Example
-This example returns the items from the beginning to "orange":'''
+'''
+Si dejo el primer indice vacio, el rango comenzara desde el principio de la lista
+'''
 
 thislist = ["apple", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
 print(thislist[:4])
-print(thislist[:-3])
+print(thislist[:-3])  # tambien con indices negativos
 
 
-'''By leaving out the end value, the range will go on to the end of the list:
-
-Example
-This example returns the items from "cherry" and to the end:'''
+'''
+Si dejo el segundo indice vacio, el rango terminara en el final de la lista
+'''
 
 thislist = ["apple", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
 print(thislist[2:])
 print(thislist[-1:])
 
-'''Range of Negative Indexes
-Specify negative indexes if you want to start the search from the end of the list:
-
-Example
-This example returns the items from index -4 (included) to index -1 (excluded)'''
-
+'''
+Rango de indices negativos
+'''
 thislist = ["apple", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
 print(thislist[-4:-1])
 
-'''Change Item Value
-To change the value of a specific item, refer to the index number:
-Example
-Change the second item:'''
+
+'''
+Range
+Le puedo especificar un tercer parametro al slice operator
+Este parametro sera el step, que es cada cuantos elementos quiero que me devuelva.
+'''
+thislist = ["apple", "banana", "cherry", "orange", "kiwi", "melon", "mango"]
+print(thislist[::2])
+print(thislist[1::2])
+
+
+#############################################
+# MODIFICAR ELEMENTOS
+#############################################
+
+
+'''
+Cambiar el valor de un elemento de una lista
+Para cambiar el valor de un elemento de una lista, debo acceder al elemento y asignarle un nuevo valor.
+'''
 
 thislist = ["apple", "banana", "cherry"]
-thislist[1] = "blackcurrant"
+thislist[1] = "mango"
 print(thislist)
 
+#############################################
+# RECORRER UNA LISTA
+#############################################
 
-'''Loop Through a List
-You can loop through the list items by using a for loop:
 
-Example
-Print all items in the list, one by one:'''
+'''
+Recorrer una lista
+Podemos recorrer una lista utilizando un for
+'''
 
 thislist = ["apple", "banana", "cherry"]
 
-for x in thislist:
+for x in thislist:  # x es el elemento de la lista
     print(x)
 
-for x in range(len(thislist)):
-    print(x,thislist[x])
+# A veces necesitamos saber ademas del valor, tambien el indice del elemento
+for x in range(len(thislist)):  # x es el indice del elemento de la lista.
+    # Len me devuelve el tamaño de la lista y range me devuelve una lista de numeros desde 0 hasta el tamaño de la lista
+    print(x, thislist[x])  # Imprimo el indice y el elemento de la lista
     #print()
 
 '''
-Check if Item Exists
-To determine if a specified item is present in a list use the in keyword:
+Chequear si un elemento esta en una lista
+Se utiliza el operador in
+'''
 
-Example
-Check if "apple" is present in the list:'''
-
+# chequeamos si apple esta en la lista
 thislist = ["apple", "banana", "cherry"]
 if "apple" in thislist:
     print("Yes, 'apple' is in the fruits list")
+
+else:
+    print('no esta')
 
 
 '''List Length
@@ -120,125 +147,146 @@ Print the number of items in the list:'''
 thislist = ["apple", "banana", "cherry"]
 print(len(thislist))
 
+#############################################
+# MANIPULAR ELEMENTOS
+#############################################
 
-'''Add Items
-To add an item to the end of the list, use the append() method:
 
-Example
-Using the append() method to add an item:'''
+'''
+Para agregar un elemento a una lista, se utiliza el metodo append()
+Se agrega el elemento al final de la lista
 
+*Un metodo es una funcion que pertenece a un objeto.
+Para llamar un metodo utilizamos el nombre del objeto, un punto y el nombre del metodo seguido de parentesis.
+Por ejemplo append() es un metodo de las listas.
+
+'''
+
+# agregamos un elemento a la lista
 thislist = ["apple", "banana", "cherry"]
 thislist.append("orange")
 print(thislist)
 
-thislist = ["apple", "banana", "cherry","apple"]
-thislist.append("orange")
+# METODO INDEX
+# El metodo index() devuelve el indice del elemento especificado.
+# Si existen mas de un elemento con el mismo valor, devuelve el indice del primer elemento que encuentre.
+thislist = ["banana", "apple", "cherry", "apple"]
 print(thislist.index("apple"))
-print(thislist.index("apple",1))
+print(thislist.index("apple", 2))  # Busca el elemento apple desde el indice 2
 
-'''To add an item at the specified index, use the insert() method:
-
-Example
-Insert an item as the second position:'''
+'''
+Insertar un valor
+Para insertar un elemento en una posicion especifica, se utiliza el metodo insert()
+'''
 
 thislist = ["apple", "banana", "cherry"]
-thislist.insert(1, "orange")
+thislist.insert(1, "orange")  # el primer parametro es el indice donde quiero insertar el elemento
+# Donde quedará orange en la lista?
 print(thislist)
 
 
-'''Remove Item
-There are several methods to remove items from a list:
+'''
+Eliminar un elemento
+Existen varios metodos para eliminar un elemento de una lista
+'''
 
-Example
-The remove() method removes the specified item:'''
-
+# Remove
+# Utilizando el metodo remove se elimina el elemento especificado
+# El elemento a eliminar debe existir en la lista, sino da error
 thislist = ["apple", "banana", "cherry"]
-thislist.remove("banana")
+thislist.remove('banana')
 print(thislist)
 
-'''Example
-The pop() method removes the specified index, (or the last item if index is not specified):'''
 
+# Pop
+# El metodo pop() elimina el elemento del indice especificado
+# Si no se especifica el indice, se elimina el ultimo elemento
 thislist = ["apple", "banana", "cherry"]
-variable = thislist.pop()
+variable = thislist.pop()  # Almaceno el elemento eliminado en una variable
 print(thislist)
 print(variable)
 
-'''Example
-The del keyword removes the specified index:'''
-
+# Del
+# Con del puedo eliminar un elemento de una lista utilizando el indice
 thislist = ["apple", "banana", "cherry"]
 del thislist[0]
 print(thislist)
 
 
-'''Example
-The del keyword can also delete the list completely:'''
-
+# Puedo eliminar una lista entera utilizando del
 thislist = ["apple", "banana", "cherry"]
 del thislist
 print(thislist)
 
-'''Example
-The clear() method empties the list:'''
-
+# Clear
+# Si quiero vaciar una lista, pero no eliminarla, puedo utilizar el metodo clear()
 thislist = ["apple", "banana", "cherry"]
 thislist.clear()
 print(thislist)
 
 
-'''Copy a List
-You cannot copy a list simply by typing list2 = list1, because: list2 will only be a reference to list1, and changes made in list1 will automatically also be made in list2.
+#############################################
+# *** IMPORTANTE ***
+#############################################
+'''
+Una lista es un objeto
+Cuando yo creo una lista, en memoria se crea un objeto que contiene los elementos de la lista.
+Cuando le asigno una lista a una variable, la variable no contiene la lista, sino que contiene una REFERENCIA dicho lugar en memoria.
+'''
 
-There are ways to make a copy, one way is to use the built-in List method copy().
+thislist = ["apple", "banana", "cherry"]  # creo una lista y la referencio con la variable thislist
+mylist = thislist  # creo una variable mylist y le asigno la variable thislist, esta variable no contiene la lista, sino que contiene una referencia a la lista
+# Ahora estoy apuntando a la misma lista con dos variables distintas
 
-Example
-Make a copy of a list with the copy() method:'''
+thislist.append("otro")
+mylist.append("unonuevo")
+print(mylist)
+print(thislist)
 
-thislist = ["apple", "banana", "cherry"]
-mylist = thislist.copy()
+'''
+Copiar una lista
+No puedo copiar simplemente una lista utilizando el operador de asignacion list2 = list1
+Porque list2 sera una referencia a list1, y los cambios que haga en list1 se haran automaticamente en list2
+
+Existen varias formas de copiar una lista, una de ellas es utilizando el metodo copy()
+'''
+
+# Copy
+thislist = ["apple", "banana", "cherry"]  # creo una lista y la referencio con la variable thislist
+
+mylist = thislist.copy()  # ahora existen 2 listas, una referenciada por thislist y otra por mylist
+
 thislist.append("otro")
 mylist.append("unonuevo")
 print(mylist)
 print(thislist)
 
 
-'''Another way to make a copy is to use the built-in method list().
-
-Example
-Make a copy of a list with the list() method:'''
-
+# List
 thislist = ["apple", "banana", "cherry"]
 mylist = list(thislist)
 mylist.append("nuevo")
 print(mylist)
 print(thislist)
 
-'''Join Two Lists
-There are several ways to join, or concatenate, two or more lists in Python.
 
-One of the easiest ways are by using the + operator.
+'''
+Concateno dos listas (join)
+'''
 
-Example
-Join two list:'''
-
-list1 = ["a", "b" , "c"]
+list1 = ["a", "b", "c"]
 list2 = [1, 2, 3]
 
-list3 = list1 + list2
+# Utilizando el operador de suma
+list3 = list1 + list2  # esta suma me devuelve una nueva lista con los elementos de list1 y list2
 print(list3)
 print(list1)
 print(list2)
-list1.extend(list2)
-print(list1)
 
 
-'''Another way to join two lists are by appending all the items from list2 into list1, one by one:
-
-Example
-Append list2 into list1:'''
-
-list1 = ["a", "b" , "c"]
+# Otra forma es agregar los elementos de una lista a otra lista
+# Utilizando append
+list1 = ["a", "b", "c"]
 list2 = [1, 2, 3]
 
 for x in list2:
@@ -246,17 +294,14 @@ for x in list2:
 
 print(list1)
 
-
-'''Or you can use the extend() method, which purpose is to add elements from one list to another list:
-
-Example
-Use the extend() method to add list2 at the end of list1:'''
-
-list1 = ["a", "b" , "c"]
+# Utilizando extend
+# De esta manera no se crea una nueva lista, sino que se agregan los elementos de una lista a otra
+list1 = ["a", "b", "c"]
 list2 = [1, 2, 3]
 
 list1.extend(list2)
 print(list1)
+
 
 '''The list() Constructor
 It is also possible to use the list() constructor to make a new list.
@@ -264,7 +309,7 @@ It is also possible to use the list() constructor to make a new list.
 Example
 Using the list() constructor to make a List:'''
 
-thislist = list(("apple", "banana", "cherry")) # note the double round-brackets
+thislist = list(("apple", "banana", "cherry"))  # note the double round-brackets
 print(thislist)
 
 
@@ -282,15 +327,5 @@ insert()	Adds an element at the specified position
 pop()	    Removes the element at the specified position
 remove()	Removes the item with the specified value
 reverse()	Reverses the order of the list
-sort()	    Sorts the list'''
 
-
-lista1 = [1,3,4,6,9]
-lista2= [456,7,8,8,6]
-
-listaResultado = [lista1[x]+lista2[x] for x in range(len(lista1))]
-print(listaResultado)
-
-listaResultado = []
-for x in range(len(lista1)):
-    listaResultado.append(lista1[x]+lista2[x])
+*** sort()	    Sorts the list (siempre y cuando los elementos sean ordenables) *** '''
