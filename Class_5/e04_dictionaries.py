@@ -3,6 +3,7 @@ Es una coleccion desordenada y mutable
 Es indexada, pero no se indexa por numeros, sino por claves
 
 Se escriben con llaves {} y tienen claves y valores
+Las claves de un diccionario funcionan como un conjunto, es decir, no pueden haber claves repetidas
 '''
 
 ### SINTAXIS
