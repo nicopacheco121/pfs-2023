@@ -40,7 +40,7 @@ lista = [2, 4, 6]
 dict_1 = {str(x): x for x in lista}  # pongo clave y valor
 print(dict_1)
 
-print({str(3*x): x**3 for x in lista if x > 3 or x > 100})
+print({str(3*x): x**3 for x in lista if x > 3 or x < 100})
 print([3*x if x < 2 else None for x in lista])
 
 
