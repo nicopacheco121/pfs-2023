@@ -31,11 +31,12 @@ Pero se puede recorrer con un bucle for, o preguntar si un valor especifico est√
 thisset = {"apple", "banana", "cherry"}
 
 print(thisset)
-for x in sorted(thisset):  # sorted() ordena los elementos del conjunto
+for x in sorted(thisset):  # sorted() ordena los elementos del conjunto. No lo modifica, si no que devuelve una lista ordenada
     print(x)
 
 nueva = list(thisset)  # crea una lista con los elementos del conjunto
-nueva.sort()  # ordena la lista
+print(nueva)
+nueva.sort(reverse=True)  # ordena la lista
 print(nueva)  # como me queda la lista?
 
 '''Example
