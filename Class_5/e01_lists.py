@@ -131,7 +131,7 @@ Se utiliza el operador in
 
 # chequeamos si apple esta en la lista
 thislist = ["apple", "banana", "cherry"]
-if "apple" in thislist:
+if "apple" in thislist:  # python debe recorrer toda la lista para saber si el elemento esta o no
     print("Yes, 'apple' is in the fruits list")
 
 else:
@@ -243,6 +243,10 @@ mylist.append("unonuevo")
 print(mylist)
 print(thislist)
 
+# POSICION EN MEMORIA DEL OBJETO
+print(id(thislist))
+print(id(mylist))
+
 '''
 Copiar una lista
 No puedo copiar simplemente una lista utilizando el operador de asignacion list2 = list1
@@ -261,6 +265,9 @@ mylist.append("unonuevo")
 print(mylist)
 print(thislist)
 
+print(id(thislist))
+print(id(mylist))
+
 
 # List
 thislist = ["apple", "banana", "cherry"]
@@ -269,6 +276,12 @@ mylist.append("nuevo")
 print(mylist)
 print(thislist)
 
+#Slice
+thislist = ["apple", "banana", "cherry"]
+mylist = thislist[:]
+mylist.append("nuevo")
+print(mylist)
+print(thislist)
 
 '''
 Concateno dos listas (join)
