@@ -68,6 +68,7 @@ Pero hay una solución. Puede convertir la tupla en una lista, cambiar la lista 
 '''
 
 x = ("apple", "banana", "cherry")  # creo una tupla y la asigno a la variable x
+print(id(x))
 z = x  # asigno la tupla a la variable z
 y = list(x)  # genero una lista a partir de la tupla y la asigno a la variable y
 y[1] = "kiwi"  # modifico el valor de la lista
@@ -75,6 +76,10 @@ x = tuple(y)  # convierto la lista en tupla y la asigno a la variable x
 
 print(x)  # que pasa si imprimo x?
 print(z)  # que pasa si imprimo z?
+
+# id de x
+print(id(x))
+
 
 
 '''Loop Through a Tuple
