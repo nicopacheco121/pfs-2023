@@ -8,6 +8,11 @@ b) Monto Neto, monto descuento, monto impuestos, monto bruto Total del la compra
 # Qué estructura podemos usar? Lista, tupla, diccionario?
 
 
+
+
+
+
+
 import random  # importamos el modulo random para generar numeros aleatorios
 
 # BASE DE DATOS
