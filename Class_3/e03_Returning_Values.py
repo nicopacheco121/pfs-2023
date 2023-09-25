@@ -11,7 +11,7 @@ Retorno de valores
 """
 
 
-def noValue(number1,number2):
+def noValue(number1, number2):
     resultado = number1*number2
     print(resultado)
 
