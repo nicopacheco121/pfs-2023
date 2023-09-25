@@ -6,6 +6,7 @@ Scope de variables
 
 x = "global"
 
+
 def foo():
     print("x inside:", x)
 
@@ -15,17 +16,18 @@ print("x outside:", x)  # que imprime esta linea?
 
 x = "global"
 
-
 """
 Declaro una variable dentro de una funcion intentando utilizarla antes de asignarle un valor
 """
+
+
 def faa():
     x = x * 2  # no puedo utilizar una variable declarada dentro de una funcion antes de asignarle un valor
     # z = x * 2
     print(x)
 
-# faa()
 
+# faa()
 
 """
 No puedo utilizar una variable declarada dentro de una funcion fuera de la funcion
@@ -35,7 +37,10 @@ No puedo utilizar una variable declarada dentro de una funcion fuera de la funci
 def fee():
     y = "local"
 
+
 fee()
+
+
 # print(y)
 
 
@@ -43,8 +48,8 @@ def fii():
     y = "local"
     print(y)  # ahora si puedo utilizar la variable y
 
-fii()
 
+fii()
 
 """
 Puedo utilizar una variable global dentro de una funcion si la declaro como global
@@ -66,9 +71,9 @@ def fuu():
 fuu()
 print('Vemos el valor de x fuera de la funcion:', x)
 
-
 # Modificamos el valor de x pero sin colocar la palabra reservada global
 x = 5
+
 
 def fo():
     x = 10
