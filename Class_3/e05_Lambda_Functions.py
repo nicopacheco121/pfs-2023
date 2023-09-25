@@ -24,7 +24,7 @@ print(x(10))  # que imprime esta linea?
 z = x(2)
 
 # asigno func a y
-y = func
+y = func  # diferencia entre usar con parametros y sin parametros
 print(y(10))  # que imprime esta linea?
 
 print('- - - - - - - - - - - - - - -')
@@ -51,7 +51,9 @@ Con esto logramos que el codigo sea mas legible y mas corto.
 
 """
 datos = range(0, 100)  # gener un conjunto de datos del 0 al 99
-resultado = list(filter(lambda x: x % 2 == 0, datos))  # que hace la funcion lambda?
+datos = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'aaa', 'aj']
+
+resultado = list(filter(lambda x: x.startswith('a'), datos))  # que hace la funcion lambda?
 # con "list" convierto el resultado en una lista
 print(resultado)  # que obtengo como resultado?
 
