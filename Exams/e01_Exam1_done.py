@@ -1,5 +1,7 @@
-'''Escribir un programa que simule un carrito de compras. El programa debe permitir, dada una coleccion de items elegidos por
- un cliente y pre-configurados con precio, descuento y % de impuestos a aplicarle, calcular el total a abonar por un cliente, discriminando
+'''Escribir un programa que simule un carrito de compras.
+El programa debe permitir, dada una coleccion de items elegidos por
+ un cliente y pre-configurados con precio, descuento y % de impuestos a aplicarle,
+ calcular el total a abonar por un cliente, discriminando
 
 a) Monto Neto, monto descuento, monto impuestos, monto bruto item x item
 b) Monto Neto, monto descuento, monto impuestos, monto bruto Total del la compra
@@ -31,11 +33,24 @@ almacen = {
     for indice, producto in enumerate(productos)  # enumerate devuelve un indice y el elemento de la lista
 }
 
+# otra forma de hacerlo
+almacen = {}
+for indice, producto in enumerate(productos):
+    almacen["A"+str(indice)] = {
+        "nombre": producto,
+        "precio": random.randint(50*(indice+1), 400),
+        "descuento": random.randint(10, 20) / 100,
+        "impuesto": random.randint(10, 21) / 100
+    }
+
+
 # No utilizamos el nombre del producto ya que puede haber mas de un producto con el mismo nombre, y las claves deben
 # ser unicas. Generando entonces el codigo de producto con el indice, nos aseguramos que sea unico.
 
 print(almacen)
 
+for producto in almacen.values():
+    print(producto)
 
 # GENERAMOS EL CARRITO DE COMPRAS
 
@@ -63,7 +78,8 @@ factura = []  # iremos guardando los datos de la factura en esta lista
 for item in carrito2:  # vamos a ir iterando el carrito y generando los renglones de la factura
 
     # Cada item tiene 2 atributos, producto y cantidad
-    prod = almacen[item["producto"]]  # obtenemos el producto del almacen
+    clave = item["producto"]  # obtenemos el codigo del producto
+    prod = almacen[clave]  # obtenemos el producto del almacen
     cantidad = item["cantidad"]  # obtenemos la cantidad del item
     #prod = almacen[item[0]]
     #cantidad = item[1]
