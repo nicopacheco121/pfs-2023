@@ -10,7 +10,7 @@ from Class_3.e01_Functions_Definition import *
 char = "-"
 
 printLine()  # ejecuto la funcion printLine sin pasarle parametros
-printLine(numberOfTimes=50)
+printLine(numberOfTimes=50)  # puedo modificar uno de los parametros
 printLine(character="~", numberOfTimes=100)
 
 
@@ -29,7 +29,7 @@ Los Argumentos Arbitrarios a menudo se acortan a *args en la documentación de P
 - *args es una tupla, es decir, un conjunto de valores
 - Vemos los valores que tiene la tupla con el debug
 '''
-print("matias", 1, "Julian", 50)  # que sucede si le paso varios parametros a la funcion print?
+print("matias", 1, "Julian", 50, sep='.')  # que sucede si le paso varios parametros a la funcion print?
 
 
 def my_print(*parameters):  # *parameters es una tupla, es decir, un conjunto de valores
