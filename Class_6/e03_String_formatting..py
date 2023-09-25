@@ -1,19 +1,24 @@
-'''String Format
 
-<template>.format(<positional_argument(s)>, <keyword_argument(s)>)
+"""
 
-'''
-'''Example
-Use the format() method to insert numbers into strings:'''
+FORMAR
+
+
+"""
 
 age = 36
+txt = "My name is John, and I am {}"  # {} es un placeholder
+print(txt.format(age))
+# no hizo falta cambiar age a string, lo hizo automaticamente
+
+# Si tengo 2 placeholders, tengo que pasar 2 argumentos
+age = 36
 txt = "My name is John, and I am {}{}"
-print(txt.format(age,True))
+print(txt.format(True, age))  # el primer {} se reemplaza por True, el segundo por age
 
+### NO ME TENGO QUE PREOCUPAR POR EL TIPO DE DATO
 
-'''The format() method takes unlimited number of arguments, and are placed into the respective placeholders:
-
-Example'''
+'''El orden de los argumentos es el orden en el que se reemplazan los placeholders'''
 quantity = 3
 itemno = 567
 price = 49.95
@@ -22,31 +27,40 @@ print(myorder.format(quantity, itemno, price))
 print(myorder.format(quantity, price, itemno))
 
 
-'''You can use index numbers {0} to be sure the arguments are placed in the correct placeholders:
+'''
+Si quisiera repetir un argumento, puedo hacerlo de 2 formas
+'''
 
-Example'''
+# Puedo utilizar indices para asegurarme que los argumentos se reemplacen en los placeholders correctos
 quantity = 3
 itemno = 567
 price = 49.95
-myorder = "I want to pay {2} dollars for {0} pieces of item {1} {2} {0}."
+myorder = "I want to pay {2} dollars for {0} pieces of item {1} {2} {0} {0}."
 
-print(myorder.format(quantity, itemno, price))
+print(myorder.format(quantity, itemno, price))  # el primer argumento es el 0, el segundo el 1, etc
 
-
-quantity = 3
+# Puedo utilizar nombres para los argumentos, pares clave-valor
+q = 3
 itemno = 567
 precio = 49.95
 myorder = "I want to pay {price} dollars for {quantity} pieces of item {itemno}."
 
-print(myorder.format(quantity=quantity, itemno=itemno, price=precio))
+print(myorder.format(quantity=itemno, itemno=itemno, price=precio))  # no nos interesa el orden
 
-'''The <format_spec> Component
-The <format_spec> component is the last portion of a replacement field:
+
+
+'''
+FORMATO DE SALIDA
+Hasta ahora no indicamos el formato de salida. Ahora vamos a ver como hacerlo.
+
+El formato de salida se especifica despues de los : en el placeholder
 
 {[<name>][!<conversion>][:<format_spec>]}
 
-<format_spec> represents the guts of the Python .format() method’s functionality. It contains information that exerts fine control over how values are formatted prior to being inserted into the template string. The general form is this:
+<format_spec> represents the guts of the Python .format() method’s functionality. 
+It contains information that exerts fine control over how values are formatted prior to being inserted into the template string. 
 
+The general form is this:
 :[[<fill>]<align>][<sign>][#][0][<width>][<group>][.<prec>][<type>]
 
 The ten subcomponents of <format_spec> are specified in the order shown. They control formatting as described in the table below:
@@ -81,91 +95,99 @@ e – exponent notation
 
 '''
 
-#Types
 
 print ("This site is {0}!!".
-       format(100))
+       format(100))  # no le indico el tipo, por defecto es string
 
 print ("This site is {0:b}!!".
-       format(100))
+       format(100))  # b es para binario
 
 print ("This site is {0:f}!!".
-       format(100))
+       format(100))  # f es para float
+
+print ("This site is {0:%}!!".
+       format(0.5))  # % es para porcentaje
+
 
 print ("This site is {0:c}!!".
        format(100))
-
-print ("This site is {0:b}!!".
-       format(100))
-
 print ("This site is {0:o}!!".
        format(100))
-
 print ("This site is {0:x}!!".
        format(100))
-
 print ("This site is {0:e}!!".
        format(100))
 
-print ("This site is {0:%}!!".
-       format(0.5))
 
-# To limit the precision
-print ("My average of this {0} was {1:.0f}"
+
+# Especificar la cantidad de decimales
+print ("My average of this {0} was {1:.5f}"
        .format("semester", 78.2))
+# Estoy utilizando numeros para los placeholders. El segundo argumento es un float y le indico
+# con el .5 que quiero 5 decimales y con la f que es un float
 
+
+# Salteamos, queda para que lo vean
 # For no decimal places
-print ("My average of this {0} was {1:.0f}%"
-       .format("semester", 78.234876))
-
+print ("My average of this {0} was {1:.1f}    %"
+       .format("semester", 78.294876))
 print ("My average of this {0} was {1:%}"
        .format("semester", 0.78234876))
-
 print ("My average of this {0} was {1:.1%}"
        .format("semester", 0.78234876))
 
 
-'''The <fill> and <align> Subcomponents
-<fill> and <align> control how formatted output is padded and positioned within the specified field width. These subcomponents only have meaning when the formatted field value doesn’t occupy the entire field width, which can only happen if a minimum field width is specified with <width>. If <width> isn’t specified, then <fill> and <align> are effectively ignored. You’ll cover <width> later on in this tutorial.
+'''
+fill y align
+
+fill y align son subcomponentes de <format_spec> que controlan como se rellena y posiciona el valor dentro del campo especificado
+Dichos componentes solo tienen sentido cuando el valor no ocupa todo el ancho del campo, lo cual solo puede pasar si especificamos un ancho minimo con <width>
+Si no especificamos <width>, entonces <fill> y <align> son ignorados
 
 <   :  left-align text in the field
 ^   :  center text in the field
 >   :  right-align text in the field'''
 
-# To demonstrate spacing when
-# strings are passed as parameters
+# Luego de los dos puntos le puedo indicar cuanto quiero que ocupe el string
+# Y tambien le puedo indicar como quiero que este posicionado dentro del campo
+# Utilizando strings la alineacion es a la izquierda por defecto
 print("{0:6}, is the computer science portal for {1:^20}!"
-      .format(12, "geeks"))
+      .format('hola', "geeks"))
 
-# To demonstrate spacing when numeric
-# constants are passed as parameters.
+# Cuando es un entero la alineacion es a la derecha
 print("It is {0:5} degrees outside !"
-      .format("40"))
+      .format(40))
 
-# To demonstrate both string and numeric
-# constants passed as parameters
-print("{0:4} was founded in {1:16}!"
+# numeros y strings
+print("{0:40} was founded in {1:16}!"
       .format("GeeksforGeeks", 2009))
 
 
-# To demonstrate aligning of spaces
-print("{0:->16} was founded in {1:<4}!"
+# FILL, para rellenar con un caracter
+print("{0:*>16} was founded in {1:<6}!"
       .format("Geeks", 2009))
+# luego de los dos puntos, le indico el caracter con el que quiero rellenar
 
 print("{:*^20s}".format("Geeks"))
 
 
 #grouping
-print('{0:,.2f}'.format(1234543423467.8947727).replace(".",";").replace(",",".").replace(";",","))
+# Se utiliza para separar los miles, se puede con coma o con underscore
+print('{0:,.2f}'.format(1234543423467.8947727))  # 2f que quiere decir?
 print('{0:_.2f}'.format(1234543423467.8947727))
 
 
+# Separamos miles cambiando la coma por un punto y luego reemplazamos el punto por una coma
+print('{0:,.2f}'.format(1234543423467.8947727).replace(".",";").replace(",",".").replace(';', ','))
 
-# which prints out i, i ^ 2, i ^ 3,
-#  i ^ 4 in the given range
 
-# Function prints out values
-# in an unorganized manner
+
+
+"""
+Forma organizada y no organizada de imprimir valores
+"""
+
+
 def unorganized(a, b):
     for i in range (a, b):
         print ( i, i**2, i**3, i**4 )
@@ -183,30 +205,54 @@ unorganized(1,5)
 organized(1,5)
 
 
+"""
+Tambien es util para api rest.
 
-parametros = {"servidor":"google.com"
-              ,"puerto":"8080"
-                ,"funcionalidad":"action"
-              ,"instrumento":"GGAL"
-              ,"otrovalor":"juan"
-              ,"mascosas":"tute"}
+Podemos armar la url con un diccionario
+"""
+parametros = {
+    "servidor": "google.com",
+    "puerto": "8080",
+    "funcionalidad": "action",
+    "instrumento": "GGAL",
+    "otrovalor": "juan",  # puede tener valores que no se utilicen
+    "mascosas": "tute"
+}
 
+# utilizamos ** para pasarle los parametros del diccionario a la funcion format. Le paso clave-valor
 url = "http://{servidor}:{puerto}/{funcionalidad}/{instrumento}".format(**parametros)
 
 #url = "http://{servidor:50}:{puerto}/{funcionalidad}/{instrumento}".format(servidor="google.com",puerto="8990",funcionalidad="action",instrumento="GGAL")
 
 print(url)
 
-name="matias"
-print(f"imprimi {name:>10}    {name:<10}")
+"""
+
+F STRINGS
+
+
+"""
+
+name = "matias"
+print(f'hola {name}')  # f string
+
+# Funciona igual que el format.
+print(f"imprimi {name:>10}    {name:<10}")  # el primer name se imprima la derecha y con 10 caracteres
 print(f"tambien puedo ejecutar expresiones del estilo 2*3 = {2*3:10}")
+
+# Puedo llamar a metodos
 to_upper = "en mayusculas"
 print(f"o llamar a funciones {to_upper.upper()}")
-x=11
-print(f"el numero es {'mayor' if x > 10 else 'menor'}")
+
+# Puedo generar output dinamicos
+x = 8
+print(f"el numero es {'mayor' if x > 10 else 'menor'}")  # Le agrego un if dentro del placeholder
+
 
 '''
 Here’s a speed comparison:
+
+La libreria timeit sirve para medir el tiempo de ejecucion de un codigo
 
 >>> import timeit
 >>> timeit.timeit("""name = "Eric"
@@ -225,6 +271,8 @@ Here’s a speed comparison:
 0.0024820892040722242
 As you can see, f-strings come out on top.'''
 
+
+# Puedo generar un string multilinea
 texto = '''Tambien puedo guardar en una variable
             Texto en varias lineas
             siempre y cuando ese texto esté entre comillas triples'''
