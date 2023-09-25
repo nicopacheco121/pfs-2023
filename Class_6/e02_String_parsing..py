@@ -1,3 +1,4 @@
+
 '''String Methods
 Python has a set of built-in methods that you can use on strings.
 
@@ -48,88 +49,120 @@ title()	Converts the first character of each word to upper case
 translate()	Returns a translated string
 upper()	Converts a string into upper case
 zfill()	Fills the string with a specified number of 0 values at the beginning'''
+
 '''String Methods
 Python has a set of built-in methods that you can use on strings.
+'''
 
-Example
-The strip() method removes any whitespace from the beginning or the end:'''
-
+"""
+strip()
+Remueve los espacios en blanco al principio y al final de un string
+"""
 a = " Hello, World! "
-print(a.strip()) # returns "Hello, World!"
+print(a.strip())  # returns "Hello, World!"
 
 
-'''Example
-The lower() method returns the string in lower case:'''
+'''
+lower()
+Retorna un string en minusculas
+'''
 
 a = "Hello, World!"
 print(a.lower())
 
-'''Example
-The upper() method returns the string in upper case:'''
+'''
+upper()
+Retorna un string en mayusculas
+'''
 
 a = "Hello, World!"
 print(a.upper())
+print(a)  # no modifica el string original
 
-'''Example
-The replace() method replaces a string with another string:'''
+'''
+replace()
+Reemplaza un string por otro
+'''
 
 a = "Hello, World!"
+# toma 2 parametros, el primero es el string a reemplazar, el segundo es el string que reemplaza
 print(a.replace("Hello", "Hola"))
 
 
-'''Example
-The split() method splits the string into substrings if it finds instances of the separator:'''
+'''
+split()
+Divide el string en sub-strings en base a un separador
+
+Me devuelve una lista con los sub-strings
+El patron NO se incluye en el resultado
+
+Es util para cando hacemos web scraping, es decir, cuando queremos extraer informacion de una pagina web.
+'''
 
 a = "Hello, World!"
-
-
-print(a.split(" ")) # returns ['Hello', ' World!']
+print(a.split(", "))  # returns ['Hello', ' World!']
+print(a.split(","))  # que pasa si no hay espacio despues de la coma?
 
 original_string = "ab_cd_ef"
-
 split_string = original_string.split("_")
-
 print(split_string)
 
+# Ejemplo, queremos quedarnos solo con la palabra valor
+print("dato: unmonton de cosas:$valor".split(":")[2].split('$')[1])
 
-print("dato: unmonton de cosas:$valor".split(":$")[1])
-print("dato$: unmonton de cosas:$140".split("xxxxx"))
 
+"""
+endswith()
+Retorna True si el string termina con el valor especificado
+"""
+ticker = 'BTCBUSD'
+print(ticker.endswith('USDT'))
+
+"""
+startswith()
+Retorna True si el string comienza con el valor especificado"""
+ticker = 'MERV - XMEV - AL30 - CI'
+print(ticker.startswith('MERV'))
+
+"""
+join()
+Concatena los elementos de un iterable (lista, tupla, etc) en un string, utilizando un string como separador
+"""
+myTuple = ("John", "Peter", "Vicky")
+x = "#".join(myTuple)
+print(x)
+
+print(",".join([str(x) for x in range(1, 100)]))
 
 
 '''Escape Character
-To insert characters that are illegal in a string, use an escape character.
+Para insertar caracteres especiales, usamos un escape character.
 
-An escape character is a backslash \ followed by the character you want to insert.
+Es un backslash \ seguido del caracter que queremos insertar.
 
-An example of an illegal character is a double quote inside a string that is surrounded by double quotes:
+Por ejemplo, si queremos insertar una comilla doble dentro de un string que esta rodeado por comillas dobles, 
+usamos el escape character \", de lo contrario, python no sabria donde termina el string.
+'''
 
-Example
-You will get an error if you use double quotes inside a string that is surrounded by double quotes:'''
-
-#txt = "We are the so-called "Vikings" from the north."
-'''To fix this problem, use the escape character \":
-
-Example
-The escape character allows you to use double quotes when you normally would not be allowed:'''
+# txt = "We are the so-called "Vikings" from the north."
+'''To fix this problem, use the escape character \":'''
 
 txt = "We are the so-called \"Vikings\" from the north."
-txt = 'We are the so-called "Vikings" from the north.'
+print(txt)
+txt = 'We are the so-called "Vikings" from the north.'  # tambien podria usar comillas simples
 print(txt)
 
 '''Other escape characters used in Python:
 
 Code	Result	Try it
 \'	Single Quote
-\\	Backslash
-\n	New Line
-\r	Carriage Return
+\\	Backslash: la primer barra es el escape character, la segunda es el caracter que quiero insertar
+\n	New Line: En python el caracter \n es un salto de linea
+\r	Carriage Return: En otros sistemas operativos se utiliza \r\n para salto de linea
 \t	Tab
 \b	Backspace
-\f	Form Feed
-\ooo	Octal value
 '''
 
 
-print(",".join([str(x) for x in range(1,100)]))
+
 
