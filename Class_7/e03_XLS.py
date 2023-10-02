@@ -59,17 +59,18 @@ workbook.save('CierreROFEX.xlsx')  # guardo el archivo
 
 
 # OTRO EJEMPLO QUE PUEDEN VER
+# busca las fechas con menor y mayor ocupacion de camas
 workbook = openpyxl.load_workbook('dataset_reporte_covid_sitio_gobierno.xlsx', data_only=True)
 sheet = workbook.worksheets[0]
 
 title =[cell.value for cell in sheet[1]]
-out = dict.fromkeys(["min_date","min","max_date","max"])
+out = dict.fromkeys(["min_date", "min", "max_date", "max"])
 for row in sheet:
     if row[2].value == "ocupacion_de_camas_sistema_publico":
-        if not(out["min"]) or out["min"]>=row[4].value:
+        if not(out["min"]) or out["min"] >= row[4].value:
             out["min_date"] = row[0].value
             out["min"] = row[4].value
-        if not(out["max"]) or out["max"]<=row[4].value:
+        if not(out["max"]) or out["max"] <= row[4].value:
             out["max_date"] = row[0].value
             out["max"] = row[4].value
 
