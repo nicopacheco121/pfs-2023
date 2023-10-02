@@ -1,16 +1,43 @@
-import bs4
+"""
 
-with open("cem.html",encoding="utf8") as html:
+HTML
+
+
+"""
+
+# Archivo cem.html
+
+# Abrir el archivo con el navegador, boton derecho, open in, browser
+
+# Lo que queremos hacer es traer la tabla entera y procesarla
+# Inspeccionamos la tabla, boton derecho, inspect
+# Tag table y copiar el id
+
+import bs4  # libreria para procesar html
+
+# Abrimos el archivo
+with open("cem.html", encoding="utf8") as html:  # si no le pongo el metodo, asume que es r
 #html = requests.get("https://www.rofex.com.ar/cem/TickByTick.aspx",verify=False).text
-    soup = bs4.BeautifulSoup(html,features="lxml")
+    soup = bs4.BeautifulSoup(html, features="lxml")  # le paso el archivo y el metodo de parseo
 
-table = soup.find('table',attrs={"id":"ctl00_ContentPlaceHolder1_gvFuturos"})
+# Ahora el archivo ya no lo uso mas, lo tengo en memoria en la variable soup
 
-headers = [header.text for header in table.find_all('th')]
+# Busco la tabla
+table = soup.find('table', attrs={"id": "ctl00_ContentPlaceHolder1_gvFuturos"})  # tag y atibuto
+
+# Ahora en table tengo la tabla entera y puedo procesarla
+# Dentro de la tabla tengo tags tr, td y th
+# tr es table row, td es table data y th es table header
+
+# Busco los headers, es decir, los th
+headers = [header.text for header in table.find_all('th')]  # genero lista por comprension con el .text, que ahi es donde esta el texto
+# Se puede debugear para ver mejor el .text
 
 results = {}
 
-for i,row in enumerate(table.find_all('tr')):
+# Utilizamos la tabla para procesarla.
+# Esto no lo vemos en clase, pueden ver el codigo cada uno despues. Vamos a XML
+for i, row in enumerate(table.find_all('tr')):
     if i == 0:
         continue
     item = None
@@ -26,9 +53,8 @@ for i,row in enumerate(table.find_all('tr')):
                 results[item] = []
         else:
             data[headers[index]] = cel.text
-    #me queda una lista de diccionarios addentro de cada producto
+    #me queda una lista de diccionarios dentro de cada producto
     results[item].append(data)
-
 
 print(headers)
 print(results)
@@ -49,6 +75,17 @@ for k,v in data.items():
     print("{0:12} {precio:>10} {volumen:>10} {cantidad:>10}".format(k,**v))
 
 
+"""
+
+
+XML
+
+
+"""
+
+# Solo vemos el archivo y que podemos procesarlo con la libreria xmltodict
+
+# Este es un XML de afip de ejemplo (archivo xsfe.txt)
 xml = '''<?xml version="1.0" encoding="UTF-8"?>
             <loginTicketRequest version="1.0">
                 <header>
@@ -59,7 +96,7 @@ xml = '''<?xml version="1.0" encoding="UTF-8"?>
                 <service>{service}</service>
             </loginTicketRequest>'''
 
-import xmltodict
+import xmltodict  # libreria para procesar xml
 from base64 import b64decode
 import datetime
 try:
@@ -67,13 +104,16 @@ try:
         tokenXML = t.read()
 except FileNotFoundError:
     print("No existe el archivo")
+
 if tokenXML:
     print("Found token in cache. Will see if it's still valid")
     dict = xmltodict.parse(tokenXML)
     token = dict["loginTicketResponse"]["credentials"]["token"]
     sign = dict["loginTicketResponse"]["credentials"]["sign"]
-    decodedXML = b64decode(token)
+
+    decodedXML = b64decode(token)  # decodifico el token y me trae un xml
+
     dictToken = xmltodict.parse(decodedXML)
-    time = dictToken["sso"]["id"]["@exp_time"]
+    time = dictToken["sso"]["id"]["@exp_time"]  # obtengo el tiempo de expiracion del token
     validToken = datetime.datetime.now() < datetime.datetime.fromtimestamp(int(time))
 print(validToken)
