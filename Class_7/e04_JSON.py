@@ -38,52 +38,61 @@ Example
   "children": [],
   "spouse": null
 }
+
 '''
 
 import json
 
-file = open("trades.json","r")
-trades = json.load(file)
+# LECTURA
+
+file = open("trades.json", "r")  # abro el archivo
+trades = json.load(file)  # cargo el archivo en un diccionario
+
 print(type(trades))
 print(type(trades["trades"]))
 print(trades["trades"])
 
-output = {"poc":{}}
+# El objetivo es entregar el volumen por precio operado
+# No vemos el codigo, solo resultado
+output = {"poc": {}}
 for trade in trades["trades"]:
     date = trade["datetime"].split(" ")[0]
     if not date in output:
-        output[date] = {"precio":0,"volumen":0,"cantidad":0}
+        output[date] = {"precio": 0, "volumen": 0, "cantidad": 0}
     output[date]["precio"] += trade["price"]
     output[date]["volumen"] += trade["size"]
     output[date]["cantidad"] += 1
-    pocprice = trade["price"]//100*100
+    pocprice = trade["price"] // 100 * 100
     if not pocprice in output["poc"]:
         output["poc"][pocprice] = 0
     output["poc"][pocprice] += trade["size"]
 
-for k,item in output.items():
+for k, item in output.items():
     if k != "poc":
         item["precio"] /= item["cantidad"]
 
-print("{0:10} {1:10} {2:10} {3:10}".format("Fecha","Precio Promedio","Volúmen","Cantidad op"))
-for k,v in output.items():
+print("{0:10} {1:10} {2:10} {3:10}".format("Fecha", "Precio Promedio", "Volúmen", "Cantidad op"))
+for k, v in output.items():
     if k != "poc":
-        print("{0:12} {precio:>10.0f} {volumen:>10.0f} {cantidad:>10}".format(k,**v))
+        print("{0:12} {precio:>10.0f} {volumen:>10.0f} {cantidad:>10}".format(k, **v))
 
+print("Precio", "Cantidad")
+for k in sorted(output["poc"].keys(), reverse=True):
+    print(k, int(output["poc"][k]) // 100 * "|")
 
-print("Precio","Cantidad")
-for k in sorted(output["poc"].keys(),reverse=True):
-    print(k,int(output["poc"][k])//50*"|")
-
+# ESCRITURA
+# pasamos rapido el codigo, solo se ve el resultado final que seria guardar el diccionario en un archivo json
 
 import random
 import csv
-productos = ["Leche","Pan","Chocolate","Vino","Manteca","Cerveza"]
 
-almacen = {"A"+str(indice):{"nombre":producto
-    ,"precio":random.randint(50*(indice+1),400)
-    ,"descuento":random.randint(10,20)/100
-    ,"impuesto":random.randint(10,21)/100} for indice,producto in enumerate(productos)}
+productos = ["Leche", "Pan", "Chocolate", "Vino", "Manteca", "Cerveza"]
 
-with open("productos.txt","a+") as filealmacen:
-    json.dump(almacen,filealmacen)
+almacen = {"A" + str(indice): {"nombre": producto,
+                               "precio": random.randint(50 * (indice + 1), 400),
+                               "descuento": random.randint(10, 20) / 100,
+                               "impuesto": random.randint(10, 21) / 100} for indice, producto in enumerate(productos)}
+
+# Guardo el diccionario en un archivo json
+with open("productos.txt", "a+") as filealmacen:
+    json.dump(almacen, filealmacen)
