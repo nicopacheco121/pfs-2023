@@ -90,7 +90,7 @@ for titulo in header:
     line += str(data[titulo])+","  # Concatenamos los datos en una linea
 
 line = line[:-1]  # Borramos la ultima coma
-file.writelines([line])  # Escribimos la linea en el archivo
+file.writelines([line])  # Escribimos la linea en el archivo y le agrega un salto de linea
 
 file.close()
 
