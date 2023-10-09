@@ -1,14 +1,18 @@
 
 """
 
-FORMAR
+FORMAT
 
 
 """
 
+# Sintaxis
 age = 36
 txt = "My name is John, and I am {}"  # {} es un placeholder
+
+# print(txt + str(age))
 print(txt.format(age))
+
 # no hizo falta cambiar age a string, lo hizo automaticamente
 
 # Si tengo 2 placeholders, tengo que pasar 2 argumentos
@@ -121,8 +125,8 @@ print ("This site is {0:e}!!".
 
 
 # Especificar la cantidad de decimales
-print ("My average of this {0} was {1:.5f}"
-       .format("semester", 78.2))
+print ("My average of this {0} was {1:.2f}"
+       .format("semester", 78.2546466))
 # Estoy utilizando numeros para los placeholders. El segundo argumento es un float y le indico
 # con el .5 que quiero 5 decimales y con la f que es un float
 
@@ -238,7 +242,7 @@ print(f'hola {name}')  # f string
 
 # Funciona igual que el format.
 print(f"imprimi {name:>10}    {name:<10}")  # el primer name se imprima la derecha y con 10 caracteres
-print(f"tambien puedo ejecutar expresiones del estilo 2*3 = {2*3:10}")
+print(f"tambien puedo ejecutar expresiones del estilo 2*3 = {2*3:<10}")
 
 # Puedo llamar a metodos
 to_upper = "en mayusculas"
