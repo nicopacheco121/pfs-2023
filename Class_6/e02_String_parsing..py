@@ -127,6 +127,8 @@ print(ticker.startswith('MERV'))
 """
 join()
 Concatena los elementos de un iterable (lista, tupla, etc) en un string, utilizando un string como separador
+
+La inversa al split
 """
 myTuple = ("John", "Peter", "Vicky")
 x = "#".join(myTuple)
