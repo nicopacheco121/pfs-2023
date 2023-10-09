@@ -111,9 +111,24 @@ if tokenXML:
     token = dict["loginTicketResponse"]["credentials"]["token"]
     sign = dict["loginTicketResponse"]["credentials"]["sign"]
 
-    decodedXML = b64decode(token)  # decodifico el token y me trae un xml
-
-    dictToken = xmltodict.parse(decodedXML)
-    time = dictToken["sso"]["id"]["@exp_time"]  # obtengo el tiempo de expiracion del token
-    validToken = datetime.datetime.now() < datetime.datetime.fromtimestamp(int(time))
-print(validToken)
+# import xmltodict  # libreria para procesar xml
+# from base64 import b64decode
+# import datetime
+# try:
+#     with open("wsfe.txt","r") as t:
+#         tokenXML = t.read()
+# except FileNotFoundError:
+#     print("No existe el archivo")
+#
+# if tokenXML:
+#     print("Found token in cache. Will see if it's still valid")
+#     dict = xmltodict.parse(tokenXML)
+#     token = dict["loginTicketResponse"]["credentials"]["token"]
+#     sign = dict["loginTicketResponse"]["credentials"]["sign"]
+#
+#     decodedXML = b64decode(token)  # decodifico el token y me trae un xml
+#
+#     dictToken = xmltodict.parse(decodedXML)
+#     time = dictToken["sso"]["id"]["@exp_time"]  # obtengo el tiempo de expiracion del token
+#     validToken = datetime.datetime.now() < datetime.datetime.fromtimestamp(int(time))
+# print(validToken)
