@@ -44,7 +44,7 @@ print(purchases)
 print(purchases.loc['June', 'apples'])  # accedo a la informacion de la fila June y la columna apples
 # Dentro de los corchetes primero va el nombre del index y luego el nombre de la columna
 # Estos indices y columnas pueden ser rangos tambien
-print(purchases.loc['June':, 'apples'])
+print(purchases.loc['Robert':, 'apples'])
 
 # Con .iloc accedemos a la informacion por el numero de fila y el numero de columna
 print(purchases.iloc[0, 0])
@@ -126,8 +126,8 @@ print(ordenes.groupby("account").price.max())  # agrupo por cuenta y me quedo co
 
 # GRAFICOS CON MATPLOTLIB
 import matplotlib.pyplot as plt
-ordenes.price[(ordenes['price'] >= 18)].plot()
-plt.show()
+# ordenes.price[(ordenes['price'] >= 18)].plot()
+# plt.show()
 
 
 # TRAEMOS DATA CON YFINANCE
