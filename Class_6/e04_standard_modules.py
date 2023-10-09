@@ -14,7 +14,7 @@ Math
 """
 
 import math  # importamos un modulo completo
-from math import ceil  # importamos una funcion especifica
+from math import ceil, floor  # importamos una funcion especifica
 from math import pi as pie  # importamos una funcion especifica y le cambiamos el nombre
 ### CUIDADO si utilizamos variables con el mismo nombre que las funciones que importamos
 
@@ -116,9 +116,12 @@ Para ello podemos utilizar la funcion seed() para inicializar el generador de ps
 de valores esperados.
 Cada vez que inicializamos el generador con la misma semilla, obtenemos los mismos valores.
 '''
-
+import random
+print('random sin seed')
+print(random.randrange(0, 100))
 random.seed(100)
 
+print('random con seed')
 print(random.randrange(0, 100))
 print(random.randrange(0, 100))
 
@@ -129,7 +132,7 @@ Sampling
 sample me permite obtener una muestra aleatoria de una lista
 
 '''
-print(random.sample([10, 20, 30, 40, 50], k=4))
+print(random.sample([10, 20, 30, 40, 50], k=2))
 
 
 '''
@@ -201,6 +204,7 @@ the C library strftime function.
 '''
 
 from time import *
+
 
 print(gmtime())  # gmtime() devuelve la hora en formato UTC
 print(strftime("%d %B %Y %H:%M:%S %p", gmtime()))  # strftime() me permite formatear la hora
