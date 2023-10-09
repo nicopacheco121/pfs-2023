@@ -1,5 +1,7 @@
 import numpy as np
+
 import matplotlib.pyplot as plt
+
 from matplotlib.ticker import FuncFormatter
 
 data = {'Barton LLC': 109438.50,

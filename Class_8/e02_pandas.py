@@ -32,8 +32,9 @@ print(df_ccl)
 print(df_ccl.info())
 
 
-# // Junto el oficial con el ccl
+# // Junto el oficial con el ccl. Necesito que el indice sea el mismo para poder hacer el merge
 df_merge = pd.merge(df_oficial, df_ccl, left_index=True, right_index=True)  # merge por indice, uso left_index y right_index
 print(df_merge)
 df_merge.plot()
+plt.savefig("ccl.png")  # guardo el grafico
 plt.show()
