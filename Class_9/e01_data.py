@@ -14,9 +14,13 @@ pd.options.display.max_columns = 20
 # PERPETUAL FUTURES HISTORICAL PRICES
 def get_data_binance(symbol, interval, api='PERPETUOS', start_time=None, end_time=None, limit=1000):
     """
+
+    (Ver la doc)
+    https://binance-docs.github.io/apidocs/spot/en/#kline-candlestick-data
+
     :param symbol: BTCUSDT, ETHUSDT, etc
     :param interval: 1m, 1h, 1d, etc
-    :param start_time: timestamp in ms
+    :param start_time: timestamp in ms  (el timestamp es el numero de segundos desde 1970)
     :param end_time: timestamp in ms
     :param limit: 1000
     :return:
@@ -196,26 +200,26 @@ def download_data(ticker, frequency, date_init: str, date_fin: str, api='SPOT', 
     timestamp_fin = int(time.mktime(dt.datetime.strptime(date_fin, "%Y-%m-%d").timetuple()) * 1000)
 
     list_for_workers = chunk_dates(timestamp_init=timestamp_init, timestamp_fin=timestamp_fin,
-                                   frequency=frequency, workers=workers, limit=limit)
+                                   frequency=frequency, workers=workers, limit=limit)  # Divido las fechas en k partes
 
     df = []
     bad_requests = []
 
     threads = []
     for i in list_for_workers:
-        t = threading.Thread(target=work_download, args=(ticker, i, api, frequency, bad_requests, df, limit))
+        t = threading.Thread(target=work_download, args=(ticker, i, api, frequency, bad_requests, df, limit))  # Creo los threads
         threads.append(t)
         t.start()
 
     for t in threads:
         t.join()
 
-    df = pd.concat(df, axis=0)
+    df = pd.concat(df, axis=0)  # Uno todos los dataframes
 
-    df.drop_duplicates(subset='time', keep='first', inplace=True)
-    df.set_index('time', inplace=True)
+    df.drop_duplicates(subset='time', keep='first', inplace=True)  # Borro los duplicados
+    df.set_index('time', inplace=True)  # Pongo el indice en el tiempo
 
-    df.sort_index(inplace=True)
+    df.sort_index(inplace=True)  # Ordeno por tiempo
 
     return df, bad_requests
 
@@ -226,6 +230,8 @@ if __name__ == '__main__':
 
     start_time = time.time()
 
+    # data = download_data(symbol, interval, date_init='2015-01-01', date_fin='2023-10-13', api='SPOT')
+    #
     data = get_data_binance(symbol=symbol, interval=interval)
 
     print(data)
