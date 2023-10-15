@@ -12,7 +12,7 @@ def add_ema(df, column, k):
 
     :return: serie de la media movil exponencial
     """
-    if k == 0 or k == 1:
+    if k <= 1:
         return df[column]
     else:
         return df[column].ewm(span=k, adjust=False).mean()  # ewm = calculos ponderados exponencialmente
@@ -28,10 +28,11 @@ def add_rma(df, column, k):
 
     :return: serie de la media movil exponencial
     """
-    if k == 0 or k == 1:
+    if k <= 1:
         return df[column]
     else:
         return df[column].ewm(alpha=1 / k, min_periods=k, adjust=False).mean()  # ewm = calculos ponderados exponencialmente
+    # alpha es el factor de suavizado, min_periods es el minimo de periodos que tiene que tener para calcular
 
 
 def add_rsi(data, column, k):
@@ -40,7 +41,7 @@ def add_rsi(data, column, k):
     Calcula el RSI de un dataframe de precios
 
     # formula
-    # RSI = 100 - 100 / (1 + RS)
+    # RSI = 100 - 100 / (1 + RS)  (es un oscilador entre 0 y 100)
     # RS = media movil de las subidas / media movil de las bajadas
 
     :param data: dataframe con precios
@@ -54,10 +55,10 @@ def add_rsi(data, column, k):
 
     df['delta'] = df[column].diff()  # calculo la diferencia entre el valor actual y el anterior
 
-    df['up'] = np.where(df['delta'] > 0, df['delta'], 0)  # si delta es mayor a 0, delta, sino 0
-    df['down'] = np.where(df['delta'] < 0, abs(df['delta']), 0)  # si delta es menor a 0, delta, sino 0
+    df['up'] = np.where(df['delta'] > 0, df['delta'], 0)  # si delta es mayor a 0, delta, sino 0. El np.where es un if
+    df['down'] = np.where(df['delta'] < 0, abs(df['delta']), 0)  # si delta es menor a 0, ABSOLUTO de delta, sino 0
 
-    df['roll_up'] = add_rma(df, 'up', k)  # calculo la media movil exponencial de up
+    df['roll_up'] = add_rma(df, 'up', k)  # calculo la media movil exponencial de up. Ver codigo de fuente de TV
     df['roll_down'] = add_rma(df, 'down', k)
 
     df['rs'] = df['roll_up'] / df['roll_down']
