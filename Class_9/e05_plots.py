@@ -1,35 +1,44 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
+
 # plot close, ema and rsi
 def plot_indicators(df, close, ema_fast, ema_slow, rsi):
 
     # use black background
     # plt.style.use('dark_background')
 
+    # uso subplots para poder graficar 2 graficos en el mismo chart
     fig, ax = plt.subplots(2, 1, figsize=(16, 9))  # 2 rows, 1 column (2 charts)
 
-    ax[0].plot(df[close], label='Close')
+    # Grafico el precio y las emas
+    ax[0].plot(df[close], label='Close')  # ax[0] es el primer grafico
     ax[0].plot(df[ema_fast], label='EMA Fast')
     ax[0].plot(df[ema_slow], label='EMA Slow')
     ax[0].legend()
 
+    # Grafico el rsi
     ax[1].plot(df[rsi], label='RSI')
     ax[1].axhline(30, color='red', linestyle='--')
     ax[1].axhline(70, color='red', linestyle='--')
     ax[1].legend()
 
+    plt.savefig('indicadores.png')
+
     plt.show()
 
 
 def plot_trades(data, close='c', operacion='operacion'):
+    """
+    Graficamos la serie de precios y las operaciones de entrada y salida
+    """
 
     # use black background
     # plt.style.use('dark_background')
 
     df = data.copy()
 
-    print(df)
+    # print(df)
 
     # En el dataframe teniamos las operaciones en columnas, ahora vamos a filtrar para obtener el precio y la fecha de inicio de cada operacion
     df['longs'] = (df[close] * 0.90).loc[df[operacion] == 'long']
@@ -42,7 +51,7 @@ def plot_trades(data, close='c', operacion='operacion'):
     plt.plot(data[close], color='black')
 
     # grafico de operaciones
-    plt.plot(df.index, df.longs, '^', markersize=10, c='green')
+    plt.plot(df.index, df.longs, '^', markersize=10, c='green')  # paso las x y las y
     plt.plot(df.index, df.shorts, 'v', markersize=10, c='red')
 
     # grid
