@@ -5,9 +5,24 @@ PATH_PERP = '/fapi/v1/klines'
 
 TIMEFRAME = '1h'
 
-EMA_FAST = 50
-EMA_SLOW = 100
+EMA_FAST = 20
+EMA_SLOW = 50
 
 SENS_EMA_FAST = list(range(20, 70, 5))
-SENS_EMA_SLOW = list(range(50, 200, 5))
-SENS_RSI = list(range(14, 90, 5))
+SENS_EMA_SLOW = list(range(50, 200, 10))
+SENS_RSI = list(range(14, 90, 10))
+
+if __name__ == '__main__':
+    # CUANTAS VECES CORRE EL CODIGO?
+    count = 0
+    for rsi in SENS_RSI:
+        for ema_slow in SENS_EMA_SLOW:
+            for ema_fast in SENS_EMA_FAST:
+                if ema_fast >= ema_slow:
+                    continue
+                count += 1
+    print(count)
+
+    count = sum(1 for rsi in SENS_RSI for ema_slow in SENS_EMA_SLOW for ema_fast in SENS_EMA_FAST if ema_fast < ema_slow)
+    print(count)
+
