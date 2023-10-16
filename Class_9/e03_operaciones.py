@@ -23,7 +23,7 @@ def signals(data, ema_fast, ema_slow, rsi):
 
     df = data.copy()  # hago una copia para no modificar el original
     df['signal'] = None  # creo una columna vacia
-    print(df.info())  # vemos que signal es toda NaN
+    # print(df.info())  # vemos que signal es toda NaN
 
     # long
     df.loc[(df[ema_fast] > df[ema_slow]) &
