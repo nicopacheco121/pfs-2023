@@ -8,6 +8,8 @@ def make_trades(data, close='c', operacion='operacion', side='BOTH'):
 
     El ultimo trade lo cierro con el ultimo valor del dataframe.
 
+    side puede ser 'BOTH', 'long' o 'short'
+
     return un dataframe con los trades
     """
 
@@ -53,7 +55,7 @@ def make_results(trades, long='long'):
                          df['price_open'] / df['price_close'] - 1) * 100
 
     # Calculo el resultado acumulado. Cumprod multiplica todos los valores de la columna
-    df['rdo_acu'] = ((df['rdo'] / 100 + 1).cumprod() - 1) * 100
+    df['rdo_acu'] = ((df['rdo'] / 100 + 1).cumprod() - 1) * 100  # cumprod multiplica todos los valores de la columna
 
     # Agrupo por trades ganadores y perdedores
     count_operations = df['rdo'].groupby([df['rdo'] > 0]).count().to_dict()
@@ -85,7 +87,7 @@ def make_results(trades, long='long'):
         per_perdedores = per_operations[False]
 
     # Calculo el resultado acumulado
-    last_data = df.iloc[-1].to_dict()
+    last_data = df.iloc[-1].to_dict()   # Ultima fila del dataframe
 
     result = {}
     result['resultadodo_acumulado'] = last_data['rdo_acu']
